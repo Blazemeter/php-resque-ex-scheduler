@@ -16,7 +16,6 @@ require_once dirname(dirname(__FILE__)) . '/lib/ResqueScheduler/Worker.php';
 $REDIS_BACKEND = getenv('REDIS_BACKEND');
 $REDIS_DATABASE = getenv('REDIS_DATABASE');
 $REDIS_NAMESPACE = getenv('REDIS_NAMESPACE');
-$REDIS_PASSWORD = getenv('REDIS_PASSWORD') == '' ? null : getenv('REDIS_PASSWORD');
 
 $LOG_HANDLER = getenv('LOGHANDLER');
 $LOG_HANDLER_TARGET = getenv('LOGHANDLERTARGET');
@@ -24,7 +23,7 @@ $LOG_HANDLER_TARGET = getenv('LOGHANDLERTARGET');
 $logger = new MonologInit\MonologInit($LOG_HANDLER, $LOG_HANDLER_TARGET);
 
 if (!empty($REDIS_BACKEND)) {
-    Resque::setBackend($REDIS_BACKEND, $REDIS_DATABASE, $REDIS_NAMESPACE, $REDIS_PASSWORD);
+    Resque::setBackend($REDIS_BACKEND, $REDIS_DATABASE, $REDIS_NAMESPACE);
 }
 
 // Set log level for resque-scheduler

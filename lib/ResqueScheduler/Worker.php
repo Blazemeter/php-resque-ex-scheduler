@@ -58,7 +58,7 @@ class Worker extends \Resque_Worker
      */
     public function handleDelayedItems($timestamp = null)
     {
-        while ((ResqueScheduler::nextDelayedTimestamp($timestamp)) !== false) {
+        while (ResqueScheduler::nextDelayedTimestamp($timestamp) !== false) {
             $this->updateProcLine('Processing Delayed Items');
             $this->enqueueDelayedItemsForTimestamp($timestamp);
         }
